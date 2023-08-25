@@ -47,8 +47,12 @@ function useSpeakerdataManager(){
 
         //prueba con axios y nuestra api speakers.
         const fetchData = async function(){
-            let result = await axios.get('/api/speakers')
-            dispatch({type: "setSpeakerList", data: result.data})
+            try{
+                let result = await axios.get('/api/speakers')
+                dispatch({type: "setSpeakerList", data: result.data})
+            }catch(e){
+                dispatch({type: "errored", error: e})
+            }
         }
         fetchData()
     

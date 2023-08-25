@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './Home.js';
 import Speakers from './Speakers.js';
 import { GlobalProvider } from './GlobalState.js';
+import { FavoriteClickProvider } from './FavoriteClickContext.js';
 
 export const ConfigContext = React.createContext() //Creo el contexto para toda mi aplicacion
 
@@ -22,7 +23,9 @@ const App = ({ pageName }) => {
         //Wrapeo toda mi app dentro del contexto y en value pongo el contexto a almacenar
         <ConfigContext.Provider value = {configValue}>
             <GlobalProvider>
-                <div>{pageToShow(pageName)}</div>
+                <FavoriteClickProvider>
+                    <div>{pageToShow(pageName)}</div>
+                </FavoriteClickProvider>
             </GlobalProvider>
         </ConfigContext.Provider>
     )

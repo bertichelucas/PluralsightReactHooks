@@ -20,7 +20,7 @@ const Speakers = () => {
     //Es importante notar que dentro del custom hook se manejan los estados relacionados  unicamente a la carga
     //de datos. El is loading y la lista. El resto de los estados se mantienen en la pagina.
     //ACA NO FUNCIONA EL GLOBAL CONTEXT
-    const {isLoading, speakerList, toggleSpeakerFavorite} =  useContext(GlobalContext)
+    const {isLoading, speakerList, toggleSpeakerFavorite, hasErrored, error} =  useContext(GlobalContext)
     
     const handleChangeSaturday = () =>{
         setSpeakingSaturday(!speakingSaturday)
@@ -55,6 +55,8 @@ const Speakers = () => {
         //     })
         // )
     }, [])
+
+    if (hasErrored === true) return <div>Error: {error.message}</div>
 
     if (isLoading) return <div>Loading...</div>
 
